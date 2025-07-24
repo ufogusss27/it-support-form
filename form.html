@@ -1,0 +1,46 @@
+<!-- form.html -->
+<!DOCTYPE  https://ufogusss27.github.io/it-support-form/>
+<html>
+<head>
+  <meta charset=" https://ufogusss27.github.io/it-support-form/">
+  <title>แจ้งปัญหา IT</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h2>แจ้งปัญหาไอที</h2>
+  <form id="ticketForm">
+    <label>ชื่อ:</label><br>
+    <input type="text" id="name"><br>
+    <label>แผนก:</label><br>
+    <textarea id="issue"></textarea><br><br>
+    <label>ชื่อเครื่อง:</label><br>
+    <textarea id="issue"></textarea><br><br>
+    <label>ปัญหา:</label><br>
+    <textarea id="issue"></textarea><br><br>
+    <button type="submit">ส่งข้อมูล</button>
+  </form>
+
+  <script>
+    liff.init({ liffId: "2007810032-blLl6gZa" })
+      .then(() => liff.getProfile())
+      .then(profile => {
+        document.getElementById("name").value = profile.displayName;
+      });
+
+    document.getElementById("ticketForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById("name").value,
+        issue: document.getElementById("issue").value
+      };
+      fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(data)
+      });
+      alert("ส่งเรียบร้อยแล้ว!");
+      liff.closeWindow();
+    });
+  </script>
+</body>
+</html>
